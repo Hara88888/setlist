@@ -33,9 +33,26 @@
         </tr>
     </table> 
     
-        <button type="button">段を追加する</button>
+        <button type="button" id="addRow">段を追加する</button>
          <button type="submit"  value="store">登録</button>  
          </form>
         </div>
     </body>
 </html>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const addButton = document.getElementById("addRow");
+    const musicTable = document.getElementById("musicTable");
+
+    addButton.addEventListener("click", function () {
+        const newRow = musicTable.insertRow(-1);
+        const cell1 = newRow.insertCell(0);
+        const cell2 = newRow.insertCell(1);
+        const cell3 = newRow.insertCell(2);
+
+        cell1.innerHTML = '<input type="text" name="musicnum[]" placeholder="曲順">';
+        cell2.innerHTML = '<input type="text" name="musicname[]" placeholder="曲名">';
+        cell3.innerHTML = '<input type="text" name="livememo[]" placeholder="ライブメモ">';
+    });
+});
+</script>
