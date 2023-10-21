@@ -7,6 +7,7 @@
     </head>
     <body>
         <h1>セットリストサイト</h1>
+        @csrf
         <div class='search'>
             <h1>調べる</h1>
             <input type="search">

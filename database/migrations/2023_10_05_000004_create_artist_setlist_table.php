@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('setlists_artists', function (Blueprint $table) {
-            $table->id();
+        Schema::create('artist_setlist', function (Blueprint $table) {
             $table->ForeignId('setlist_id')->constrained();
             $table->ForeignId('artist_id')->constrained();
+            $table->primary(['setlist_id','artist_id']);
         });
     }
 
