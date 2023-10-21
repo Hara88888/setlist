@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('venues', function (Blueprint $table) {
             $table->id();
             $table->string('venue_name',50);
-            $table->integer('venue_capacity');
-            $table->string('venue_img')->nullable;
-            $table->string('venue_explanation',300);
+            $table->integer('venue_capacity')->nullable();
+            $table->string('venue_img')->nullable();
+            $table->string('venue_explanation',300)->nullable();
             $table->timestamps();
         });
     }

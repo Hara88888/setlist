@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('musics', function (Blueprint $table) {
             $table->id();
             $table->ForeignId('artist_id')->constrained();
-            $table->ForeignId('category_id')->constrained();
+            $table->ForeignId('category_id')->constrained()->nullable();
             $table->string('music_name',50);
-            $table->date('release_date');
-            $table->string('music_explanation',300);
+            $table->date('release_date')->nullable();
+            $table->string('music_explanation',300)->nullable();
             $table->timestamps();
         });
     }

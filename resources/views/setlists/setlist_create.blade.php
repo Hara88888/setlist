@@ -8,51 +8,55 @@
     <body>
         <h1>セットリストサイト</h1>
    <form action="/posts" method="POST">
+       @csrf
         <div class='post'>
             <h1>セットリスト投稿画面</h1>
         </div>
         
         <div class='artist_submit'>
-   <input type="text" name="artist" placeholder="アーティスト名">
-    <input type="text" name="venue" placeholder="会場">
-     <input type="text" name="livetitle" placeholder="ライブのタイトル">
-      <input type="text" name="date" placeholder="日時">
+   <input type="text" name="artist[artist_name]" placeholder="アーティスト名">
+    <input type="text" name="venue[venue_name]" placeholder="会場">
+     <input type="text" name="setlist[live_title]" placeholder="ライブのタイトル">
+      <input type="date" name="setlist[event_date]" placeholder="日時">
     
-        <textarea name="liveexplain" placeholder="ライブの説明"></textarea>
+        <textarea name="setlist[live_explation]" placeholder="ライブの説明"></textarea>
     
-    <table border="1">
+    <table border="1" id="musicTable" >
         <tr>
             <th>曲順</th>
             <th>曲名</th>
             <th>ライブメモ</th>
         </tr>
         <tr>
-        <td> <input type="text" name="musicnum" placeholder="曲順"></td>
-         <td> <input type="text" name="musicname" placeholder="曲名"></td>
-         <td> <input type="text" name="livememo" placeholder="ライブメモ"></td>
+        <td> <input type="number" name="music_setlist[song_order][]" placeholder="曲順"></td>
+         <td> <input type="text" name="music[music_name][]" placeholder="曲名"></td>
+         <td> <input type="text" name="music_setlist[live_memo][]" placeholder="ライブメモ"></td>
         </tr>
     </table> 
-    
-        <button type="button" id="addRow">段を追加する</button>
+        <button type="button" onclick="addRow();">段を追加する</button>
          <button type="submit"  value="store">登録</button>  
-         </form>
-        </div>
+    </form>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const musicTable = document.getElementById("musicTable");
+     function addRow() {
+                const newRow = musicTable.insertRow(-1);
+                const cell1 = newRow.insertCell(0);
+                const cell2 = newRow.insertCell(1);
+                const cell3 = newRow.insertCell(2);
+
+                cell1.innerHTML = '<input type="number" name="music_setlist[song_order][]" placeholder="曲順">';
+                cell2.innerHTML = '<input type="text" name="music[music_name][]" placeholder="曲名">';
+                cell3.innerHTML = '<input type="text" name="music_setlist[live_memo][]" placeholder="ライブメモ">';
+            }
+         const addButton = document.querySelector("button");
+        addButton.addEventListener("click", addRow);
+            
+            
+        });
+    
+    </script>
+</div>
     </body>
 </html>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-    const addButton = document.getElementById("addRow");
-    const musicTable = document.getElementById("musicTable");
-
-    addButton.addEventListener("click", function () {
-        const newRow = musicTable.insertRow(-1);
-        const cell1 = newRow.insertCell(0);
-        const cell2 = newRow.insertCell(1);
-        const cell3 = newRow.insertCell(2);
-
-        cell1.innerHTML = '<input type="text" name="musicnum[]" placeholder="曲順">';
-        cell2.innerHTML = '<input type="text" name="musicname[]" placeholder="曲名">';
-        cell3.innerHTML = '<input type="text" name="livememo[]" placeholder="ライブメモ">';
-    });
-});
-</script>
