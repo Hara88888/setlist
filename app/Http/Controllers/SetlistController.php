@@ -73,9 +73,14 @@ class SetlistController extends Controller
         return redirect('/');
     }
     
-    public function show()
+    public function show(Setlist $setlist)
     {
-        return view('setlists.setlist_show');
+        $setlist=Setlist::with('venue','artists', 'musics')->find($setlist->id);
+        $artist=$setlist->artists;
+        $venue=$setlist->venue;
+        $musics=$setlist->musics;
+        // dd($musics);
+        return view('setlists.setlist_show',compact('setlist','venue','artist','musics'));
     }
     
     public function artist_create()

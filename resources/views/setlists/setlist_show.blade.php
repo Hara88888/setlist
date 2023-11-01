@@ -7,33 +7,30 @@
     </head>
     <body>
         <h1>セットリストサイト</h1>
-        <div class='search'>
-            <h1>調べる</h1>
-            <input type="search">
-</div>
-
         <div class='post'>
             <h1>セットリスト閲覧画面</h1>
         </div>
         
         <div class='setlist_show'>
- <h2>(仮)ライブの名前</h2>
-  <h2>(仮)アーティスト名</h2>
-    <h2>(仮)会場</h2>
-      <h2>(仮)日時</h2>
-    <div style="border:solid;">(仮)ライブの説明</div>
+ <h2>{{$setlist->live_title}}</h2>
+  <h2>{{$artist[0]->artist_name}}</h2>
+    <h2>{{$venue->venue_name}}</h2>
+      <h2>{{$setlist->event_date}}</h2>
+    <div style="border:solid;">{{$setlist->live_explation}}</div>
     
     <table border="1">
-        <tr>
-            <th>曲順</th>
-            <th>曲名</th>
-            <th>ライブメモ</th>
-        </tr>
-        <tr>
-        <td>曲順</td>
+         <td>曲順</td>
          <td>曲名</td>
          <td> ライブメモ</td>
         </tr>
+        @foreach($musics as $music)
+        <tr>
+            <th>@dd($music)</th>
+            <th>{{$music->music_name}}</th>
+            <th></th>
+        </tr>
+        @endforeach
+       
     </table> 
     
     <h2>感想</h2>
