@@ -18,10 +18,10 @@ class Setlist extends Model
         
         ];
         
-        protected $casts = [
-            'song_order' =>'array',
-            'live_memo' =>'array',
-            ];
+        // protected $casts = [
+        //     'song_order' =>'array',
+        //     'live_memo' =>'array',
+        //     ];
     
     use HasFactory;
     
@@ -30,11 +30,16 @@ class Setlist extends Model
     }
     
     public function musics(){
-        return $this->belongsToMany(Music::class);
+        return $this->belongsToMany(Music::class)
+        ->withPivot('song_order','live_memo');
     }
     
     public function venue()
     {
         return $this->belongsTo(Venue::class);
+    }
+      public function musicSetlists()
+    {
+        return $this->belongsToMany(MusicSetlist::class);
     }
 }

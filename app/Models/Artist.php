@@ -25,4 +25,5 @@ class Artist extends Model
     {
         return $this->hasMany(Post::class);
     }
+    
 }
