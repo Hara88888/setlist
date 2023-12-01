@@ -23,14 +23,14 @@
          <td>曲名</td>
          <td> ライブメモ</td>
         </tr>
+        {{$musics}}
         @foreach($musics as $music)
-        <tr>
-            <th>@dd($music)</th>
-            <th>{{$music->music_name}}</th>
-            <th></th>
-        </tr>
-        @endforeach
-       
+<tr>
+    <td>{{ $music->musicsetlist->song_order }}</td>
+    <td>{{ $music->music_name }}</td> 
+    <td>{{ $music->musicsetlist->live_memo }}</td>
+</tr>
+@endforeach
     </table> 
     
     <h2>感想</h2>

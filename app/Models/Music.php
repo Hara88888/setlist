@@ -15,14 +15,15 @@ class Music extends Model
         'music_explanation',
         ];
         
-        protected $casts = [
-            'music_name' =>'array',
-            ];
+        // protected $casts = [
+        //     'music_name' =>'array',
+        //     ];
     
     use HasFactory;
     
     public function Setlists(){
         return $this->belongsToMany(Setlist::class);
+        // ->withPivot('song_order','live_memo');
     }
     
     public function Artist()
@@ -34,4 +35,9 @@ class Music extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    public function musicsetlist()
+{
+    return $this->hasOne(MusicSetlist::class);
+}
+
 }
