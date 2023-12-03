@@ -19,12 +19,9 @@ use App\Http\Controllers\SetlistController;
 Route::get('/', [SetlistController::class,'index']);
 Route::get('setlists/create', [SetlistController::class,'create']);
 Route::post('/posts', [SetlistController::class,'store']);
-// Route::get('setlists/show', [SetlistController::class,'show']);
 Route::get('/setlists/{setlist}',[SetlistController::class,'show']);
 Route::get('setlists/artist_create',[SetlistController::class,'artist_create']);
 Route::get('setlists/venue_create',[SetlistController::class,'venue_create']);
 
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
