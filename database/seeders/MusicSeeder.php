@@ -17,8 +17,8 @@ class MusicSeeder extends Seeder
     public function run()
     {
         DB::table('musics')->insert([
-           'artist_id'=>3,
-           'category_id'=>2,
+           'artist_id'=>1,
+           'category_id'=>1,
            'music_name'=>'0choir',
            'release_date'=>'2000-11-24',
            'music_explanation'=>'アルバム代表曲',
