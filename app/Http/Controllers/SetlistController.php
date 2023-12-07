@@ -83,14 +83,28 @@ class SetlistController extends Controller
         return view('setlists.setlist_show',compact('setlist','venue','artist','musics'));
     }
     
-    public function artist_create()
+    public function show_artist_create()
     {
         return view('setlists.artist_create'); 
     }
+    public function create_artist(Request $request,Artist $artist)
+    {
+        $input=$request['artist'];
+        $artist->fill($input)->save();
+       return view('setlists.artist_create'); 
+    }
     
-    public function venue_create()
+    
+    public function show_venue_create()
     {
         return view('setlists.venue_create'); 
+    }
+    
+    public function create_venue(Request $request,Venue $venue)
+    {
+          $input=$request['venue'];
+        $venue->fill($input)->save();
+       return view('setlists.venue_create'); 
     }
     
   

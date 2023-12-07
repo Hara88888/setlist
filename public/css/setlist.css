@@ -16,6 +16,11 @@
                 text-decoration: none;
                 transform: scale(1.1);
             }
+            button:hover {
+    color: #fb5607; /* ホバー時の色変更 */
+    transform: scale(1.1);
+}
+
             .form-control {
                 width: 60%;
                 margin: auto;

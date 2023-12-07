@@ -16,11 +16,13 @@ use App\Http\Controllers\SetlistController;
 |
 */
 
-Route::get('/', [SetlistController::class,'index']);
+Route::get('/', [SetlistController::class,'index'])->name('setlist.index');
 Route::get('setlists/create', [SetlistController::class,'create']);
 Route::post('/posts', [SetlistController::class,'store']);
-Route::get('setlists/artist_create',[SetlistController::class,'artist_create']);
-Route::get('setlists/venue_create',[SetlistController::class,'venue_create']);
+Route::get('setlists/artist_create',[SetlistController::class,'show_artist_create']);
+Route::post('/posts/artists', [SetlistController::class,'create_artist']);
+Route::get('setlists/venue_create',[SetlistController::class,'show_venue_create']);
+Route::post('/posts/venues',[SetlistController::class,'create_venue']);
 Route::get('/setlists/{setlist}',[SetlistController::class,'show']);
 
 
