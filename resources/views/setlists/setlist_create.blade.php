@@ -44,12 +44,13 @@
                         <td><input type="number" class="form-control" name="music_setlist[song_order][]" placeholder="曲順"></td>
                         <td><input type="text" class="form-control" name="music[music_name][]" placeholder="曲名"></td>
                         <td><input type="text" class="form-control" name="music_setlist[live_memo][]" placeholder="ライブメモ"></td>
-                        <td><a button type="button" class="btn btn-lg mb-3" onclick="deleteRow(this);">削除</button></td> <!-- Add a delete button to the row -->
+                        <td><button type="button" class="btn btn-lg mb-3" onclick="deleteRow(this);">削除</button></td> <!-- Add a delete button to the row -->
                     </tr>
                 </tbody>
             </table>
-            <a button type="button" class="btn btn-lg mb-3" onclick="addRow();">♫ 段を追加する ♫</button>
-            <a button type="submit" class="btn btn-lg mb-3" value="store">♫ 登録 ♫</button>
+            <button type="button" class="btn btn-lg mb-3" onclick="addRow();">♫ 段を追加する ♫</button>
+            <button type="submit" class="btn btn-lg mb-3" value="store">♫ 登録 ♫</button>
+             <a href="{{route('setlist.index') }}">一覧に戻る</a>   
         </form>
     </div>
     <script>
@@ -64,7 +65,7 @@
         cell1.innerHTML = '<input type="number" class="form-control" name="music_setlist[song_order][]" placeholder="曲順">';
         cell2.innerHTML = '<input type="text" class="form-control" name="music[music_name][]" placeholder="曲名">';
         cell3.innerHTML = '<input type="text" class="form-control" name="music_setlist[live_memo][]" placeholder="ライブメモ">';
-        cell4.innerHTML = '<a button type="button" class="btn btn-lg mb-3" onclick="deleteRow(this);">削除</button>'; // Added this line
+        cell4.innerHTML = '<button type="button" class="btn btn-lg mb-3" onclick="deleteRow(this);">削除</button>'; // Added this line
       }
 
       function deleteRow(btn) {
