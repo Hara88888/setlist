@@ -60,6 +60,7 @@ h1 {
     border-radius: 10px; /* 角を丸くする */
     padding: 10px; /* パディングを追加 */
     display: inline-block; /* パディングと背景色を適用する範囲を調整 */
+    font-size: 2em;
 }
 
 .subtitle-style {
@@ -72,5 +73,50 @@ h1 {
     display: block;
     width:fit-content;
     margin:auto;
-    text-align:center;
+    font-size: 2em;
+}
+
+.parent{
+    display:flex;
+}
+
+.artist {
+    color: #333;
+}
+
+.venue {
+    color: #333;
+}
+
+.setlist-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.setlist-table th,
+.setlist-table td {
+  border: 1px solid #ccc;
+  padding: .5rem;
+  background:#FFFFFF;
+  color:#FF9900;
+}
+.setlist-table th {
+  text-align: center;
+
+}
+
+nav a {
+  text-decoration: none;
+  color: #000;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.btn-custom {
+  max-width: 200px; 
+  margin: auto; 
+  display: block;
 }
