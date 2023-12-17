@@ -26,7 +26,7 @@ class Music extends Model
         // ->withPivot('song_order','live_memo');
     }
     
-    public function Artist()
+    public function artist()
     {
         return $this->belongsTo(Artist::class);
     }

@@ -18,7 +18,7 @@ class MusicSeeder extends Seeder
     {
         DB::table('musics')->insert([
            'artist_id'=>1,
-           'category_id'=>1,
+        //   'category_id'=>1,
            'music_name'=>'0choir',
            'release_date'=>'2000-11-24',
            'music_explanation'=>'アルバム代表曲',

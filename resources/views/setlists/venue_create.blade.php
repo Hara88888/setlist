@@ -11,7 +11,7 @@
     
       <div class="py-5">
   <h1 class="mb-5" style="font-style: italic;">♫ セットリストサイト♫</h1>
-            <h2 class="subtitle-style mb-5">アーティスト登録画面</h2>    
+            <h2 class="subtitle-style mb-5">会場登録画面</h2>    
             <main>
             <form action="/posts/venues" method="POST">
                 @csrf
@@ -23,9 +23,9 @@
                 <div class="mb-3">
                     <textarea name="venue[venue_explanation]" class="form-control" placeholder="会場の説明など"></textarea>
                 </div>
-                            <div class="mb-3 text-center">
-                <input type="file" class="form-control">
-            </div>
+            <!--                <div class="mb-3 text-center">-->
+            <!--    <input type="file" class="form-control">-->
+            <!--</div>-->
             <div class="mb-3 text-center">
                 <button type="submit" class="btn btn-lg mb-3" value="store">登録</button> 
                  <a href="{{route('setlist.index') }}">一覧に戻る</a> 

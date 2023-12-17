@@ -22,9 +22,12 @@ class SetlistController extends Controller
      
      public function create()
     {
-        return view('setlists.setlist_create'); 
+        $artists=Artist::all();
+        $venues=Venue::all();
+        $musics=Music::all();
+        return view('setlists.setlist_create', compact('artists','venues','musics')); 
     }
-    public function store(Request $request, Artist $artist, Setlist $setlist, Venue $venue,  Music $music,){
+    public function store(Request $request, Artist $artist, Setlist $setlist, Venue $venue,  Music $music){
         $artistdata = $request['artist'];
         $venuedata = $request['venue'];
         $setlistdata = $request['setlist'];
@@ -112,10 +115,22 @@ class SetlistController extends Controller
     
     public function show_music_create()
     {
-        return view('setlists.music_create');
+         $artists=Artist::all();
+        return view('setlists.music_create',compact('artists'));
     }
-  
-  public function show_list()
+    
+    public function create_music(Request $request, Artist $artist, Music $music)
+    {
+        $artistId=$request->input('artist_id');
+        $musicData = $request->input('music');
+          if ($artistId && Artist::where('id', $artistId)->exists()) {
+        $music->artist_id = $artistId;
+    }
+        
+        $music->fill($musicData)->save();
+        return view('setlists.setlist_index');
+    }
+    public function show_list()
   {
       return view('setlists.setlist_list_show');
   }
