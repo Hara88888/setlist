@@ -75,12 +75,15 @@ class SetlistController extends Controller
     
     public function show(Setlist $setlist)
     {
-        $setlist=Setlist::with('venue','artists', 'musics.musicsetlist')->find($setlist->id);
-        $artist=$setlist->artists;
-        $venue=$setlist->venue;
-        $musics=$setlist->musics;
-        dd($musics);
-        return view('setlists.setlist_show',compact('setlist','venue','artist','musics'));
+    //     $setlist=Setlist::with('venue','artists', 'musics.musicsetlist')->find($setlist->id);
+    //     $artist=$setlist->artists;
+    //     $venue=$setlist->venue;
+    //     $musics=$setlist->musics;
+    //     dd($musics);
+    //     return view('setlists.setlist_show',compact('setlist','venue','artist','musics'));
+    // 
+    
+        return view('setlists.setlist_show');
     }
     
     public function show_artist_create()
@@ -107,5 +110,13 @@ class SetlistController extends Controller
        return view('setlists.venue_create'); 
     }
     
+    public function show_music_create()
+    {
+        return view('setlists.music_create');
+    }
   
+  public function show_list()
+  {
+      return view('setlists.setlist_list_show');
+  }
 }
