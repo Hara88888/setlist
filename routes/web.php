@@ -27,5 +27,5 @@ Route::get('setlists/music_create',[SetlistController::class,'show_music_create'
 Route::get('setlists/setlist_list',[SetlistController::class,'show_list']);
 // Route::get('/setlists/{setlist}',[SetlistController::class,'show']);
 Route::get('/setlists/setlist_show',[SetlistController::class,'show']);
-
+Route::get('/search',[SetlistController::class,'search']);
 
