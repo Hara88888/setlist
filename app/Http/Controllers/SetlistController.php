@@ -95,6 +95,15 @@ class SetlistController extends Controller
     }
     public function create_artist(Request $request,Artist $artist)
     {
+         $request->validate([
+            'artist.artist_name'=>'required',
+            'artist.formation_date'=>'required'
+            ],
+            [
+                'artist.artist_name.required'=>'アーティスト名は必須です。',
+                'artist.formation_date.required'=>'結成日は必須です。'
+                ]
+            );
         $input=$request['artist'];
         $artist->fill($input)->save();
        return view('setlists.artist_create'); 
@@ -108,6 +117,15 @@ class SetlistController extends Controller
     
     public function create_venue(Request $request,Venue $venue)
     {
+         $request->validate([
+    'venue.venue_name' => 'required',
+    'venue.venue_capacity' => 'required|numeric|min:1'
+], [
+    'venue.venue_name.required' => '会場名は必須です。',
+    'venue.venue_capacity.required' => '収容人数は必須です。',
+    'venue.venue_capacity.numeric' => '収容人数は数字である必要があります。',
+    'venue.venue_capacity.min' => '収容人数は一人以上である必要があります。'
+]);
           $input=$request['venue'];
         $venue->fill($input)->save();
        return view('setlists.venue_create'); 
@@ -115,12 +133,23 @@ class SetlistController extends Controller
     
     public function show_music_create()
     {
+        
          $artists=Artist::all();
         return view('setlists.music_create',compact('artists'));
     }
     
     public function create_music(Request $request, Artist $artist, Music $music)
     {
+         $request->validate([
+    'artist.artist_name' => 'required',
+    'music.music_name' => 'required',
+    'music.release_date' => 'required',
+], [
+    'artist.artist_name.required' => 'アーティスト名は必須です。',
+    'music.music_name.required' => '曲名は必須です。',
+    'music.release_date.required' => '発売日は必須です。',
+]);
+
         $artistId=$request->input('artist_id');
         $musicData = $request->input('music');
           if ($artistId && Artist::where('id', $artistId)->exists()) {

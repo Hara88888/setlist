@@ -12,6 +12,15 @@
   <h1 class="mb-5" style="font-style: italic;">♫ セットリストサイト♫</h1>
             <h2 class="subtitle-style mb-5">曲登録画面</h2>    
        <main>
+             @if ($errors->any())
+    <div>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif 
         <form action="/posts/musics" method="POST">
             @csrf
           <div class="mb-3 text-center">
