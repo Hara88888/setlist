@@ -92,6 +92,15 @@ class SetlistController extends Controller
     }
     public function create_artist(Request $request,Artist $artist)
     {
+        $request->validate([
+            'artist.artist_name'=>'required',
+            'artist.formation_date'=>'required'
+            ],
+            [
+                'artist.artist_name.required'=>'アーティスト名は必須です。',
+                'artist.formation_date.required'=>'結成日は必須です。'
+                ]
+            );
         $input=$request['artist'];
         $artist->fill($input)->save();
        return view('setlists.artist_create'); 
@@ -105,6 +114,16 @@ class SetlistController extends Controller
     
     public function create_venue(Request $request,Venue $venue)
     {
+       $request->validate([
+    'venue.venue_name' => 'required',
+    'venue.venue_capacity' => 'required|numeric|min:1'
+], [
+    'venue.venue_name.required' => '会場名は必須です。',
+    'venue.venue_capacity.required' => '収容人数は必須です。',
+    'venue.venue_capacity.numeric' => '収容人数は数字である必要があります。',
+    'venue.venue_capacity.min' => '収容人数は一人以上である必要があります。'
+]);
+
           $input=$request['venue'];
         $venue->fill($input)->save();
        return view('setlists.venue_create'); 
@@ -119,4 +138,27 @@ class SetlistController extends Controller
   {
       return view('setlists.setlist_list_show');
   }
+  
+ public function search(Request $request)
+{
+    $queryParam = $request->input('query');
+    
+    $searchResults = Setlist::with(['artists', 'venue', 'musics'])
+    ->where('live_title', 'like', "%$queryParam%")
+        ->orWhereHas('artists', function ($q) use ($queryParam) {
+            $q->where('artist_name', 'like', "%$queryParam%");
+        })
+        ->orWhereHas('musics', function ($q) use ($queryParam) {
+            $q->where('music_name', 'like', "%$queryParam%");
+        })
+        ->orWhereHas('venue', function ($q) use ($queryParam) {
+            $q->where('venue_name', 'like', "%$queryParam%");
+        })
+        ->get();
+
+    // dd($searchResults);
+
+    return view('setlists.setlist_list_show', ['searchResults' => $searchResults]);
+}
+
 }

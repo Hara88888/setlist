@@ -11,7 +11,11 @@
         <div class="container text-center py-5">
             <h1 class="mb-5" style="font-style: italic;">♫ セットリストサイト ♫</h1>
     <nav>
- <input type="search" class="form-control mb-5" placeholder="アーティスト、曲名...">
+      </header>
+      <form action="/search" method="GET">
+ <input type="text"  name="query" class="form-control mb-5" placeholder="アーティスト、曲名...">
+ <button type="submit">検索</button>
+ </form>
     </nav>
   </header>
   <main>

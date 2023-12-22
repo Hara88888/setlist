@@ -19,18 +19,25 @@
         <th>ライブタイトル</th>
         <th>アーティスト名</th>
         <th>会場名</th>
-        <th>日程</th>
+        <th>日付</th>
         <th>いいね数</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>サンプルテキスト</td>
-        <td>アーティストA</td>
-        <td>会場X</td>
-        <td>2023-12-16</td>
-        <td>100</td>
-      </tr>
+     @foreach ($searchResults as $setlist)
+    <tr>
+        <td>{{ $setlist->live_title }}</td>
+        <td>
+            @foreach ($setlist->artists as $artist)
+                {{ $artist->artist_name }}
+            @endforeach
+        </td>
+        <td>{{ $setlist->venue->venue_name }}</td>
+        <td>{{ $setlist->event_date }}</td>
+        <td>その他のデータ...</td>
+    </tr>
+@endforeach
+
     </tbody>
      <tbody>
       <tr>

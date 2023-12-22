@@ -13,6 +13,15 @@
   <h1 class="mb-5" style="font-style: italic;">♫ セットリストサイト♫</h1>
             <h2 class="subtitle-style mb-5">アーティスト登録画面</h2> 
                 <main>
+                    @if ($errors->any())
+    <div>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif 
         <form action="/posts/artists" method="POST">
             @csrf
             <div class="mb-3">
@@ -25,9 +34,6 @@
                 <textarea name="artist[artist_explanation]" class="form-control" placeholder="アーティストの説明など"></textarea>
             </div>
             <div class="mb-3">
-                <div class="mb-3 text-center">
-                <input type="file" class="form-control">
-            </div>
             <div class="mb-3 text-center">
                 <button type="submit" class="btn btn-lg mb-3" value="store">登録</button> 
                  <a href="{{route('setlist.index') }}">一覧に戻る</a> 
