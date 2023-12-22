@@ -33,6 +33,7 @@
             <div class="mb-3">
                 <textarea name="artist[artist_explanation]" class="form-control" placeholder="アーティストの説明など"></textarea>
             </div>
+
             <div class="mb-3">
             <div class="mb-3 text-center">
                 <button type="submit" class="btn btn-lg mb-3" value="store">登録</button> 

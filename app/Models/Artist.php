@@ -23,7 +23,7 @@ class Artist extends Model
     
     public function musics()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Music::class);
     }
     
 }
