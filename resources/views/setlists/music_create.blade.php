@@ -11,6 +11,21 @@
       <div class="py-5">
   <h1 class="mb-5" style="font-style: italic;">♫ セットリストサイト♫</h1>
             <h2 class="subtitle-style mb-5">曲登録画面</h2>    
+            <div aria-live="polite" aria-atomic="true" class="position-relative">
+        <div class="toast-container position-absolute top-0 end-0 p-3" id="toastPlacement">
+            <!-- トースト -->
+            <div class="toast my-toast" id="successToast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">成功</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{ session('success') }}
+                </div>
+            </div>
+        </div>
+    </div>
+            
        <main>
              @if ($errors->any())
     <div>
@@ -77,8 +92,9 @@
                  <a href="{{route('setlist.index') }}">一覧に戻る</a> 
                  </div>
     </div>
-    <script>
+   <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // アーティストIDのラジオボタンにイベントリスナーを設定
     document.querySelectorAll('[name="artist_id"]').forEach(function(radio) {
         radio.addEventListener('change', function() {
             if (this.checked) {
@@ -87,8 +103,17 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // セッションに成功メッセージがあればトーストを表示
+    var successMessage = '{{ session('success') }}';
+    if (successMessage) {
+        var toastElement = document.getElementById('successToast');
+        var toast = new bootstrap.Toast(toastElement);
+        toast.show();
+    }
 });
 </script>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>

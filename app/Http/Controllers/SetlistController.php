@@ -78,15 +78,11 @@ class SetlistController extends Controller
     
     public function show(Setlist $setlist)
     {
-    //     $setlist=Setlist::with('venue','artists', 'musics.musicsetlist')->find($setlist->id);
-    //     $artist=$setlist->artists;
-    //     $venue=$setlist->venue;
-    //     $musics=$setlist->musics;
-    //     dd($musics);
-    //     return view('setlists.setlist_show',compact('setlist','venue','artist','musics'));
-    // 
-    
-        return view('setlists.setlist_show');
+        $setlist=Setlist::with('venue','artists', 'musics.musicsetlist')->find($setlist->id);
+        $artist=$setlist->artists;
+        $venue=$setlist->venue;
+        $musics=$setlist->musics;
+        return view('setlists.setlist_show',compact('setlist','venue','artist','musics'));
     }
     
     public function show_artist_create()
@@ -107,7 +103,8 @@ class SetlistController extends Controller
             );
         $input=$request['artist'];
         $artist->fill($input)->save();
-       return view('setlists.artist_create'); 
+    $request->session()->flash('success', 'アーティストを登録しました。');
+       return redirect('setlists/artist_create'); 
     }
     
     
@@ -132,7 +129,9 @@ class SetlistController extends Controller
 
           $input=$request['venue'];
         $venue->fill($input)->save();
-       return view('setlists.venue_create'); 
+     $request->session()->flash('success', '会場を登録しました。');
+        
+        return redirect('setlists/venue_create');
     }
     
     public function show_music_create()
@@ -161,7 +160,9 @@ class SetlistController extends Controller
     }
         
         $music->fill($musicData)->save();
-        return view('setlists.setlist_index');
+        $request->session()->flash('success', '曲を登録しました。');
+        
+        return redirect('setlists/music_create');
     }
     public function show_list()
   {

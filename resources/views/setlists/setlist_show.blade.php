@@ -12,25 +12,28 @@
     <div class="py-5">
   <h1  style="font-style: italic;">♫ セットリストサイト♫</h1>
             <h2 class="subtitle-style mb-5">セットリスト閲覧画面</h2>     
-    <main>          
+    <main>      
  <div class="row mb-3">
         <div class="col">
-            <h3 class="text-center">タイトル</h3>
+            <h3 class="text-center">{{$setlist->live_title}}</h3>
+        </div>
+       <div class="col">
+    @foreach ($setlist->artists as $artist)
+        <h3 class="text-center">{{ $artist->artist_name }}</h3>
+    @endforeach
+</div>
+
+        <div class="col">
+            <h3 class="text-center">{{$venue->venue_name}}</h3>
         </div>
         <div class="col">
-            <h3 class="text-center">アーティスト名</h3>
+            <h3 class="text-center">{{$setlist->event_date}}</h3>
         </div>
         <div class="col">
-            <h3 class="text-center">会場名</h3>
+            <h3 class="text-center">{{$setlist->live_explation}}</h3>
         </div>
         <div class="col">
-            <h3 class="text-center">日程</h3>
-        </div>
-        <div class="col">
-            <h3 class="text-center">説明</h3>
-        </div>
-        <div class="col">
-            <h3 class="text-center">いいね数</h3>
+            <h3 class="text-center">{{$setlist->nice}}</h3>
         </div>
 
     <table class="setlist-table">
@@ -42,11 +45,13 @@
         </tr>
         </thead>
       <tbody>
-             <tr>
-         <th>曲順</th>
-         <th>曲名</th>
-         <th> ライブメモ</th>
-        </tr>
+             @foreach ($musics as $music)
+            <tr>
+                <td>{{ $music->pivot->song_order }}</td>
+                <td>{{ $music->music_name }}</td>
+                <td>{{ $music->pivot->live_memo }}</td>
+            </tr>
+        @endforeach
         </tbody>
          <tbody>
              <tr>

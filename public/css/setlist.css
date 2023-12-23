@@ -120,3 +120,7 @@ main {
   margin: auto; 
   display: block;
 }
+
+.my-toast{
+    color: #000000;
+} 
