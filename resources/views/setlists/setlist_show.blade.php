@@ -12,8 +12,14 @@
     <div class="py-5">
   <h1  style="font-style: italic;">♫ セットリストサイト♫</h1>
             <h2 class="subtitle-style mb-5">セットリスト閲覧画面</h2>     
-    <main>          
- <div class="row mb-3">
+    <main>      
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+<div class="row mb-3">
         <div class="col">
             <h3 class="text-center">タイトル</h3>
         </div>
@@ -33,6 +39,29 @@
             <h3 class="text-center">いいね数</h3>
         </div>
 
+ <div class="row mb-3">
+        <div class="col">
+            <h3 class="text-center">{{$setlist->live_title}}</h3>
+        </div>
+       <div class="col">
+    @foreach ($setlist->artists as $artist)
+        <h3 class="text-center">{{ $artist->artist_name }}</h3>
+    @endforeach
+</div>
+
+        <div class="col">
+            <h3 class="text-center">{{$venue->venue_name}}</h3>
+        </div>
+        <div class="col">
+            <h3 class="text-center">{{$setlist->event_date}}</h3>
+        </div>
+        <div class="col">
+            <h3 class="text-center">{{$setlist->live_explation}}</h3>
+        </div>
+        <div class="col">
+            <h3 class="text-center">{{$setlist->nice}}</h3>
+        </div>
+
     <table class="setlist-table">
         <thread>
             <tr>
@@ -42,93 +71,35 @@
         </tr>
         </thead>
       <tbody>
-             <tr>
-         <th>曲順</th>
-         <th>曲名</th>
-         <th> ライブメモ</th>
-        </tr>
-        </tbody>
-         <tbody>
-             <tr>
-         <th>曲順</th>
-         <th>曲名</th>
-         <th> ライブメモ</th>
-        </tr>
-        </tbody>
-           <tbody>
-             <tr>
-         <th>曲順</th>
-         <th>曲名</th>
-         <th> ライブメモ</th>
-        </tr>
-        </tbody>
-         <tbody>
-             <tr>
-         <th>曲順</th>
-         <th>曲名</th>
-         <th> ライブメモ</th>
-        </tr>
-        </tbody>
-           <tbody>
-             <tr>
-         <th>曲順</th>
-         <th>曲名</th>
-         <th> ライブメモ</th>
-        </tr>
-        </tbody>
-         <tbody>
-             <tr>
-         <th>曲順</th>
-         <th>曲名</th>
-         <th> ライブメモ</th>
-        </tr>
-        </tbody>
-           <tbody>
-             <tr>
-         <th>曲順</th>
-         <th>曲名</th>
-         <th> ライブメモ</th>
-        </tr>
-        </tbody>
-         <tbody>
-             <tr>
-         <th>曲順</th>
-         <th>曲名</th>
-         <th> ライブメモ</th>
-        </tr>
-        </tbody>
-    </table> 
-    <div class="py-3">
-    <h2>感想</h2>
-    <table class="setlist-table">
-       <tbody>
-           <tr>
-            <th>Aさん</th>
-            <th>○○○○○○○○</th>
-        </tr>  
-       </tbody>
-       <tbody>
-            <th>Bさん</th>
-        <th>○○○○○○○○</th>
-        </tr>
-        </tbody> 
-    </table>
-         </div>
-           <button type="button" class="btn btn-outline-primary btn-custom">
-    <i class="fa fa-thumbs-up"></i> いいね
-</button>
- <button type="button" class="btn btn-primary btn-custom">戻る</button>
-  <button type="button" class="btn btn-warning btn-custom">トップページへ</button>
+             @foreach ($musics as $music)
+            <tr>
+                <td>{{ $music->pivot->song_order }}</td>
+                <td>{{ $music->music_name }}</td>
+                <td>{{ $music->pivot->live_memo }}</td>
+            </tr>
+        @endforeach
+        </table>
+
         </div>
+<div class="text-center">
+    <form action="/setlists/{{ $setlist->id }}/like" method="POST" style="display:inline-block;">
+        @csrf
+        <button type="submit" class="btn btn-outline-primary btn-custom">
+            <i class="fa fa-thumbs-up"></i> いいね
+        </button>
+    </form>
+    <a href="{{route('setlist.index') }}" class="btn btn-lg mb-3">一覧に戻る</a>
+    <button type="button" class="btn btn-lg mb-3" onclick="window.history.back();">戻る</button>
+</div>
+
+
+           
+
+
         </div>
         </main> 
     </body>
     <script>
-function toggleLike(button) {
-    const icon = button.querySelector('i');
-    icon.classList.toggle('fas');
-    icon.classList.toggle('far'); 
-    icon.classList.toggle('text-danger'); 
-}
+
 </script>
 </html>

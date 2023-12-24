@@ -26,7 +26,7 @@
     <tbody>
      @foreach ($searchResults as $setlist)
     <tr>
-        <td>{{ $setlist->live_title }}</td>
+        <td><a href="/setlists/{{$setlist->id}}">{{ $setlist->live_title }}</a></td>
         <td>
             @foreach ($setlist->artists as $artist)
                 {{ $artist->artist_name }}
@@ -34,133 +34,15 @@
         </td>
         <td>{{ $setlist->venue->venue_name }}</td>
         <td>{{ $setlist->event_date }}</td>
-        <td>その他のデータ...</td>
+        <td>{{$setlist->nice}}</td>
     </tr>
 @endforeach
 
-    </tbody>
-     <tbody>
-      <tr>
-        <td>サンプルテキスト</td>
-        <td>アーティストA</td>
-        <td>会場X</td>
-        <td>2023-12-16</td>
-        <td>100</td>
-      </tr>
-    </tbody>
-     <tbody>
-      <tr>
-        <td>サンプルテキスト</td>
-        <td>アーティストA</td>
-        <td>会場X</td>
-        <td>2023-12-16</td>
-        <td>100</td>
-      </tr>
-    </tbody>
-     <tbody>
-      <tr>
-        <td>サンプルテキスト</td>
-        <td>アーティストA</td>
-        <td>会場X</td>
-        <td>2023-12-16</td>
-        <td>100</td>
-      </tr>
-    </tbody>
-     <tbody>
-      <tr>
-        <td>サンプルテキスト</td>
-        <td>アーティストA</td>
-        <td>会場X</td>
-        <td>2023-12-16</td>
-        <td>100</td>
-      </tr>
-    </tbody>
-      <tbody>
-      <tr>
-        <td>サンプルテキスト</td>
-        <td>アーティストA</td>
-        <td>会場X</td>
-        <td>2023-12-16</td>
-        <td>100</td>
-      </tr>
-    </tbody>
-      <tbody>
-      <tr>
-        <td>サンプルテキスト</td>
-        <td>アーティストA</td>
-        <td>会場X</td>
-        <td>2023-12-16</td>
-        <td>100</td>
-      </tr>
-    </tbody>
-      <tbody>
-      <tr>
-        <td>サンプルテキスト</td>
-        <td>アーティストA</td>
-        <td>会場X</td>
-        <td>2023-12-16</td>
-        <td>100</td>
-      </tr>
-    </tbody>
-      <tbody>
-      <tr>
-        <td>サンプルテキスト</td>
-        <td>アーティストA</td>
-        <td>会場X</td>
-        <td>2023-12-16</td>
-        <td>100</td>
-      </tr>
-    </tbody>
-      <tbody>
-      <tr>
-        <td>サンプルテキスト</td>
-        <td>アーティストA</td>
-        <td>会場X</td>
-        <td>2023-12-16</td>
-        <td>100</td>
-      </tr>
-    </tbody>
-      <tbody>
-      <tr>
-        <td>サンプルテキスト</td>
-        <td>アーティストA</td>
-        <td>会場X</td>
-        <td>2023-12-16</td>
-        <td>100</td>
-      </tr>
-    </tbody>
-      <tbody>
-      <tr>
-        <td>サンプルテキスト</td>
-        <td>アーティストA</td>
-        <td>会場X</td>
-        <td>2023-12-16</td>
-        <td>100</td>
-      </tr>
-    </tbody>
-      <tbody>
-      <tr>
-        <td>サンプルテキスト</td>
-        <td>アーティストA</td>
-        <td>会場X</td>
-        <td>2023-12-16</td>
-        <td>100</td>
-      </tr>
-    </tbody>
-      <tbody>
-      <tr>
-        <td>サンプルテキスト</td>
-        <td>アーティストA</td>
-        <td>会場X</td>
-        <td>2023-12-16</td>
-        <td>100</td>
-      </tr>
-    </tbody>
     
   </table>
   
-  <button type="button" class="btn btn-primary">戻る</button>
-  <button type="button" class="btn btn-warning">トップページへ</button>
+<a href="{{route('setlist.index') }}">一覧に戻る</a>
+<button type="button" class="btn btn-lg mb-3" onclick="window.history.back();">戻る</button>
 </div>
 </main>
 </body>
