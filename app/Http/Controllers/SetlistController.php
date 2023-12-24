@@ -27,6 +27,8 @@ class SetlistController extends Controller
         $musics=Music::all();
         return view('setlists.setlist_create', compact('artists','venues','musics')); 
     }
+    
+    
     public function store(Request $request, Artist $artist, Setlist $setlist, Venue $venue,  Music $music){
         $artistdata = $request['artist'];
         $venuedata = $request['venue'];
@@ -64,6 +66,7 @@ class SetlistController extends Controller
         $musicsetlist->live_memo = $livememos[$index];
         $musicsetlist->save();
     }
+    
 };
 
         
@@ -81,7 +84,7 @@ class SetlistController extends Controller
         $setlist=Setlist::with('venue','artists', 'musics.musicsetlist')->find($setlist->id);
         $artist=$setlist->artists;
         $venue=$setlist->venue;
-        $musics=$setlist->musics;
+        $musics=$setlist->musics()->orderBy('pivot_song_order','asc')->get();
         return view('setlists.setlist_show',compact('setlist','venue','artist','musics'));
     }
     
@@ -189,6 +192,12 @@ class SetlistController extends Controller
     // dd($searchResults);
 
     return view('setlists.setlist_list_show', ['searchResults' => $searchResults]);
+}
+
+public function like(Request $request, Setlist $setlist)
+{
+    $setlist->increment('nice');
+    return back()->with('success', 'いいねを追加しました。');
 }
 
 }

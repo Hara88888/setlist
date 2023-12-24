@@ -119,11 +119,10 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="artistModalLabel">曲名を追加</h5>
+                            <h5 class="modal-title" id="musicModalLabel">曲名を追加</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <input type="text" class="form-control" name="artist_name" placeholder="曲名">
                            <div class="container py-5">
     <div class="row">
         @foreach ($musics as $music)
@@ -145,9 +144,8 @@
                 </div>
             </div>
              <div class="mb-3">
-                 <input type="text" class="form-control" name="music[music_name]" placeholder="曲名">
+                 <input type="text" class="form-control" name="music[music_name][]" placeholder="曲名">
                 </div>
-</td>
                         <td><input type="text" class="form-control" name="music_setlist[live_memo][]" placeholder="ライブメモ"></td>
                         <td><button type="button" class="btn btn-lg mb-3" onclick="deleteRow(this);">削除</button></td> <!-- Add a delete button to the row -->
                     </tr>
@@ -251,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
         radio.addEventListener('change', function() {
             if (this.checked) {
                 var musicName = this.getAttribute('data-music-name');
-                document.querySelector('[name="music[music_name]"]').value = musicName;
+                document.querySelector('[name="music[music_name][]"]').value = musicName;
             }
         });
     });

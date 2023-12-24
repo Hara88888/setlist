@@ -13,6 +13,32 @@
   <h1  style="font-style: italic;">♫ セットリストサイト♫</h1>
             <h2 class="subtitle-style mb-5">セットリスト閲覧画面</h2>     
     <main>      
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+<div class="row mb-3">
+        <div class="col">
+            <h3 class="text-center">タイトル</h3>
+        </div>
+        <div class="col">
+            <h3 class="text-center">アーティスト名</h3>
+        </div>
+        <div class="col">
+            <h3 class="text-center">会場名</h3>
+        </div>
+        <div class="col">
+            <h3 class="text-center">日程</h3>
+        </div>
+        <div class="col">
+            <h3 class="text-center">説明</h3>
+        </div>
+        <div class="col">
+            <h3 class="text-center">いいね数</h3>
+        </div>
+
  <div class="row mb-3">
         <div class="col">
             <h3 class="text-center">{{$setlist->live_title}}</h3>
@@ -52,76 +78,17 @@
                 <td>{{ $music->pivot->live_memo }}</td>
             </tr>
         @endforeach
-        </tbody>
-         <tbody>
-             <tr>
-         <th>曲順</th>
-         <th>曲名</th>
-         <th> ライブメモ</th>
-        </tr>
-        </tbody>
-           <tbody>
-             <tr>
-         <th>曲順</th>
-         <th>曲名</th>
-         <th> ライブメモ</th>
-        </tr>
-        </tbody>
-         <tbody>
-             <tr>
-         <th>曲順</th>
-         <th>曲名</th>
-         <th> ライブメモ</th>
-        </tr>
-        </tbody>
-           <tbody>
-             <tr>
-         <th>曲順</th>
-         <th>曲名</th>
-         <th> ライブメモ</th>
-        </tr>
-        </tbody>
-         <tbody>
-             <tr>
-         <th>曲順</th>
-         <th>曲名</th>
-         <th> ライブメモ</th>
-        </tr>
-        </tbody>
-           <tbody>
-             <tr>
-         <th>曲順</th>
-         <th>曲名</th>
-         <th> ライブメモ</th>
-        </tr>
-        </tbody>
-         <tbody>
-             <tr>
-         <th>曲順</th>
-         <th>曲名</th>
-         <th> ライブメモ</th>
-        </tr>
-        </tbody>
-    </table> 
-    <div class="py-3">
-    <h2>感想</h2>
-    <table class="setlist-table">
-       <tbody>
-           <tr>
-            <th>Aさん</th>
-            <th>○○○○○○○○</th>
-        </tr>  
-       </tbody>
-       <tbody>
-            <th>Bさん</th>
-        <th>○○○○○○○○</th>
-        </tr>
-        </tbody> 
-    </table>
-         </div>
-           <button type="button" class="btn btn-outline-primary btn-custom">
-    <i class="fa fa-thumbs-up"></i> いいね
-</button>
+        </table>
+
+
+<form action="/setlists/{{ $setlist->id }}/like" method="POST">
+    @csrf
+    <button type="submit" class="btn btn-outline-primary btn-custom">
+        <i class="fa fa-thumbs-up"></i> いいね
+    </button>
+</form>
+
+           
  <button type="button" class="btn btn-primary btn-custom">戻る</button>
   <button type="button" class="btn btn-warning btn-custom">トップページへ</button>
         </div>
@@ -129,11 +96,6 @@
         </main> 
     </body>
     <script>
-function toggleLike(button) {
-    const icon = button.querySelector('i');
-    icon.classList.toggle('fas');
-    icon.classList.toggle('far'); 
-    icon.classList.toggle('text-danger'); 
-}
+
 </script>
 </html>
