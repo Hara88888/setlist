@@ -52,6 +52,8 @@
             <div class="mb-3 text-center">
                 <button type="submit" class="btn btn-lg mb-3" value="store">登録</button> 
                  <a href="{{route('setlist.index') }}">一覧に戻る</a> 
+                 <button type="button" class="btn btn-lg mb-3" onclick="window.history.back();">戻る</button>
+
                  </div>
         </form>
     </div>

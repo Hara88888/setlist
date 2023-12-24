@@ -80,18 +80,22 @@
         @endforeach
         </table>
 
+        </div>
+<div class="text-center">
+    <form action="/setlists/{{ $setlist->id }}/like" method="POST" style="display:inline-block;">
+        @csrf
+        <button type="submit" class="btn btn-outline-primary btn-custom">
+            <i class="fa fa-thumbs-up"></i> いいね
+        </button>
+    </form>
+    <a href="{{route('setlist.index') }}" class="btn btn-lg mb-3">一覧に戻る</a>
+    <button type="button" class="btn btn-lg mb-3" onclick="window.history.back();">戻る</button>
+</div>
 
-<form action="/setlists/{{ $setlist->id }}/like" method="POST">
-    @csrf
-    <button type="submit" class="btn btn-outline-primary btn-custom">
-        <i class="fa fa-thumbs-up"></i> いいね
-    </button>
-</form>
 
            
- <button type="button" class="btn btn-primary btn-custom">戻る</button>
-  <button type="button" class="btn btn-warning btn-custom">トップページへ</button>
-        </div>
+
+
         </div>
         </main> 
     </body>

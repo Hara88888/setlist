@@ -17,7 +17,8 @@ class SetlistController extends Controller
 {
       public function index()
     {
-        return view('setlists.setlist_index'); 
+         $setlists=Setlist::with('venue','artists')->latest()->take(10)->get();
+        return view('setlists.setlist_index',compact('setlists')); 
     }
      
      public function create()
