@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class MusicSetlist extends Model
 {
     
+    public $incrementing = false;
     protected $table='music_setlist';
     
     protected $fillable=[
