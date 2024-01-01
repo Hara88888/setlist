@@ -71,13 +71,17 @@
         </tr>
         </thead>
       <tbody>
-             @foreach ($musics as $music)
-            <tr>
-                <td>{{ $music->pivot->song_order }}</td>
-                <td>{{ $music->music_name }}</td>
-                <td>{{ $music->pivot->live_memo }}</td>
-            </tr>
-        @endforeach
+           @foreach ($musics as $music)
+<tr>
+    <td>{{ $music->pivot->song_order }}</td>
+    <td onclick="playYouTubeVideo('{{ $music->music_name }}')" style="cursor: pointer;">
+        {{ $music->music_name }}
+        <div id="youtubePlayerContainer" style="margin-top: 20px;"></div>
+        </td>
+    <td>{{ $music->pivot->live_memo }}</td>
+</tr>
+@endforeach
+
         </table>
 
         </div>
@@ -99,7 +103,17 @@
         </div>
         </main> 
     </body>
-    <script>
-
+   <script>
+function playYouTubeVideo(songName) {
+    fetch(`/youtube/search/${encodeURIComponent(songName)}`)
+    .then(response => response.json())
+    .then(data => {
+        const videoId = data.videoId;
+        const playerContainer = document.getElementById('youtubePlayerContainer');
+        playerContainer.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    })
+    .catch(error => console.error('Error:', error));
+}
 </script>
+
 </html>

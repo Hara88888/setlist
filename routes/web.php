@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SetlistController;
+use App\Http\Controllers\YouTubeAPIController;
+
 
 
 
@@ -29,3 +31,6 @@ Route::get('setlists/setlist_list',[SetlistController::class,'show_list']);
 Route::get('/setlists/{setlist}',[SetlistController::class,'show']);
 Route::get('/search',[SetlistController::class,'search']);
 Route::post('/setlists/{setlist}/like', [SetlistController::class, 'like']);
+Route::get('/youtube/search/{query}', [YouTubeAPIController::class, 'search']);
+
+
