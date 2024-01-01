@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('setlists', function (Blueprint $table) {
             $table->id();
             $table->foreignId('venue_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            // $table->foreignId('user_id')->constrained();
             $table->date('event_date');
             $table->string('live_title',50);
             $table->integer('nice')->default(0);

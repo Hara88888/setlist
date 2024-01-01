@@ -52,7 +52,7 @@ class SetlistController extends Controller
          if((DB::table('venues')->where('venue_name',$venuedata)->exists())){
           $venueId=$venue->where('venue_name',$venuedata)->value('id');
           $setlist->venue_id=$venueId;
-          $setlist->user_id=1;
+        //   $setlist->user_id=1;
           $setlist->fill($setlistdata)->save();
         };
        
